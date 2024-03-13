@@ -32,7 +32,7 @@ public class Compute {
 
     private double convertTo1f(float unconvertedNum){
         double binaryNum = unconvertedNum;
-        if(binaryNum < 2 && binaryNum > 0){
+        if( (binaryNum < 2 && binaryNum > 0) || binaryNum == 0){
             return binaryNum;
         }
         // binaryNum 0.XX
