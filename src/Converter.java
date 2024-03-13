@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Arrays;
 
 public class Converter extends JFrame{
     private JButton convertBtn;
