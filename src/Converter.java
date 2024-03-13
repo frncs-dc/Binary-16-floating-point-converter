@@ -25,18 +25,26 @@ public class Converter extends JFrame{
      */
     public static String decimal_toBinary(String input){
 //      String[] inputs = input.split("x10");
+        int wholeNumber = 0;
+        float deciNumber = 0.0f;
 
-        String[] inputs = input.split("\\.");
-        int wholeNumber = Integer.parseInt(inputs[0]); // whole number value
-        String strDeciNumber = "0." + Integer.parseInt(inputs[1]);
-        float deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
-
+        if(input.contains(".")) {
+            String[] inputs = input.split("\\.");
+            wholeNumber = Integer.parseInt(inputs[0]); // whole number value
+            deciNumber = 0.0f;
+            String strDeciNumber = "0." + Integer.parseInt(inputs[1]);
+            deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
+        }
+        else{
+            String[] inputs = input.split("\\.");
+            wholeNumber = Integer.parseInt(inputs[0]); // whole number value
+            deciNumber = 0.0f;
+        }
 //        gets the exponent
 //        String[] exponent = inputs[1].split("\\^");
 //        int exp = Integer.parseInt(exponent[1]);
 
         int[] binaryNum = new int[1000];
-
         int i = 0;
         while(wholeNumber > 0){
             binaryNum[i] = wholeNumber % 2;  //remainder is stored
@@ -45,23 +53,24 @@ public class Converter extends JFrame{
         }
 
         String finalBinary = "";
-        
 
         for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
-            finalBinary += binaryNum[j]; // add latest binary value
+            finalBinary = finalBinary + binaryNum[j];
         }
+
         if(deciNumber > 0.0000){
             finalBinary += "."; // appending the decimal point
-        }
-        while(deciNumber > 0.0000){
-            deciNumber *= 2;  // multiply 2 for the decimal point to convert to base-2
 
-            if(deciNumber >= 1.0){
-                deciNumber -= 1; // if it is more than 1.0 we subtract 1 and append it to the decimal point of base-2
-                finalBinary += "1";
-            }
-            else {
-                finalBinary += "0" ;// else if it is not more than 1.0 we append 0 in the decimal point of base-2
+            while(deciNumber > 0.0){
+                deciNumber *= 2;
+
+                if(deciNumber >= 1.0){
+                    deciNumber -= 1;
+                    finalBinary += "1";
+                }
+                else {
+                    finalBinary += "0";
+                }
             }
         }
 

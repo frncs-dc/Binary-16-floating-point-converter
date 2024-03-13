@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="feat: added Output.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
     </list>
     <list id="89fd4119-0b50-4063-89c1-eab211a939ca" name="Changes by Gab PC" comment="Changes by Gab PC" />
     <list id="27cdb381-a567-42ee-b1c9-7d476ceaed74" name="Changes by mukbookpro" comment="" />
@@ -26,12 +25,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "frncs-dc"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;frncs-dc&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -70,7 +69,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -84,6 +83,8 @@
       <updated>1710251978531</updated>
       <workItem from="1710251979661" duration="1556000" />
       <workItem from="1710289029391" duration="9066000" />
+      <workItem from="1710303236618" duration="716000" />
+      <workItem from="1710336104130" duration="319000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
