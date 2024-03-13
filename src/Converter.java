@@ -154,6 +154,10 @@ public class Converter extends JFrame {
                 // TODO: make function to standardize binary to 1.f before passing to extractValues
 
                 output.extractValues(value);
+
+                signBitField.setText(output.sign);
+                expField.setText(output.exponent);
+                mantissaField.setText(output.mantissa);
             }
         });
 
