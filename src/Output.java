@@ -15,11 +15,12 @@ public class Output {
     public void extractValues(String binaryNum){
         //-1.101 x 2^something
 
+        String sign, mantissa, exponent;
         int firstInstanceofDecimalPoint = binaryNum.indexOf(".");
         int firstInstanceofExp = binaryNum.indexOf("^");
         int firstInstanceofx = binaryNum.indexOf("x");
 
-        this.sign = String.valueOf(isNegative(binaryNum) ? 1 : 0); //if what is returned is 1, then negative else positive
+        this.sign = String.valueOf(isNegative(binaryNum) ? 1 : 0); //if what is returned is 1, then its negative else positive
 
         this.mantissa = binaryNum.substring(firstInstanceofDecimalPoint+1, firstInstanceofx); //gets everything after the decimal point until x2^stuff
 
@@ -28,10 +29,6 @@ public class Output {
         System.out.println("Sign: " +this.sign+" Exponent: "+this.exponent+" Mantissa: "+this.mantissa);
     }
 
-    /*
-    * @param this takes in the binaryNum string
-    * @return this returns a boolean value if the string starts with a - sign.
-    * */
     public boolean isNegative(String binaryNum){
         return binaryNum.startsWith("-");
     }
