@@ -10,9 +10,6 @@ public class Compute {
     private int signBit;
     private int exponent;
     private int mantissa;
-
-    //Output
-    private int fullOutput;
     //Utils
     private float form1f;
     private int exponentCount = 0;
@@ -78,6 +75,12 @@ public class Compute {
         return mantissa;
     }
 
-
+    public String getFullOutput(){
+        String fullOutput = "";
+        fullOutput += signBit;
+        fullOutput += exponent;
+        fullOutput += mantissa;
+        return fullOutput;
+    }
 
 }
