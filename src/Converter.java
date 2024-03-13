@@ -5,9 +5,9 @@ public class Converter extends JFrame{
     private JLabel title;
     private JPanel converterPanel;
     private JTextField inputField;
-    private JLabel outputField;
     private JLabel inputLabel;
     private JLabel outputLabel;
+    private JButton outputInTextFileButton;
 
     public Converter() {
         this.setContentPane(this.converterPanel);
