@@ -1,7 +1,8 @@
 import javax.swing.*;
-import java.util.Arrays;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Converter extends JFrame{
+public class Converter extends JFrame {
     private JButton convertBtn;
     private JLabel title;
     private JPanel converterPanel;
@@ -9,21 +10,23 @@ public class Converter extends JFrame{
     private JLabel inputLabel;
     private JLabel outputLabel;
     private JButton outputInTextFileButton;
+    private JLabel signBitField;
+    private JLabel expField;
+    private JLabel mantissaField;
 
-    /*
-        @param  input   - the input to check if binary or decimal
-        @return true if binary value, false if decimal
-    */
+    /**
+     * @param input the input to check if binary or decimal
+     * @return true if binary value, false if decimal
+     */
     static boolean checkBinary(String input) {
         return input.contains("x2");
     }
 
-
     /**
-     * @param input 
-     * @return
+     * @param input to convert to Binary
+     * @return  converted Binary
      */
-    public static String decimal_toBinary(String input){ //  function to convert decimal to binary
+    public static String decimalToBinary(String input){ //  function to convert decimal to binary
 //      String[] inputs = input.split("x10");
         int wholeNumber = 0;
         float deciNumber = 0.0f;
@@ -91,15 +94,24 @@ public class Converter extends JFrame{
     }
 
     public Converter() {
+        convertBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Output output = new Output();
+                String value = null;
+                String input = inputField.getText();
+                boolean isNegative = input.contains("-");
+                if (isNegative){input = input.substring(1);}
 
-        String input = inputField.getText();
-        boolean negative = input.contains("-");
-        if (negative){input = input.substring(1);}
+                if (!checkBinary(input)){ // check if Binary
+                    value = decimalToBinary(expand(input)); // if not convert
+                }
 
-        if (!checkBinary(input)){
-            decimal_toBinary(expand(input));
-        }
+                // TODO: make function to standardize binary to 1.f before passing to extractValues
 
+                output.extractValues(value);
+            }
+        });
 
 
         this.setContentPane(this.converterPanel);

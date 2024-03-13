@@ -106,7 +106,7 @@
               <text value="Mantissa"/>
             </properties>
           </component>
-          <component id="34197" class="javax.swing.JLabel">
+          <component id="34197" class="javax.swing.JLabel" binding="signBitField">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -114,7 +114,7 @@
               <text value="&lt;Sign Bit&gt;"/>
             </properties>
           </component>
-          <component id="17951" class="javax.swing.JLabel">
+          <component id="17951" class="javax.swing.JLabel" binding="expField">
             <constraints>
               <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -122,7 +122,7 @@
               <text value="&lt;Exponent&gt;"/>
             </properties>
           </component>
-          <component id="7e911" class="javax.swing.JLabel">
+          <component id="7e911" class="javax.swing.JLabel" binding="mantissaField">
             <constraints>
               <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>

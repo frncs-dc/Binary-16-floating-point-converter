@@ -5,13 +5,6 @@ public class Output {
     public String exponent;
     public String mantissa;
 
-    //constructor
-    public Output(){
-        this.sign = sign;
-        this.exponent = exponent;
-        this.mantissa = mantissa;
-    }
-
     public void extractValues(String binaryNum){
         //-1.101 x 2^something
 
@@ -38,7 +31,7 @@ public class Output {
 
             this.exponent = binaryNum.substring(firstInstanceofExp+1); //gets everything after the ^ sign
 
-            System.out.println("Sign: " +this.sign+" Exponent: "+this.exponent+" Mantissa: "+this.mantissa);
+            System.out.println("Sign: " + this.sign +" Exponent: "+this.exponent+" Mantissa: "+this.mantissa);
         }
         
     }
