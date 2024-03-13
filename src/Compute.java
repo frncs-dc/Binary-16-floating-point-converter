@@ -52,7 +52,19 @@ public class Compute {
     }
 
     private int computeBias(){
-        return exponentCount + bias;
+        int exponentDecimal = exponentCount + bias;
+        int exponentBinary = 0;
+        while(exponentDecimal > 0){
+            if(exponentDecimal % 2 == 1){
+                exponentBinary = exponentBinary * 10 + 1;
+            }
+            else{
+                exponentBinary = exponentBinary * 10;
+            }
+
+            exponentDecimal /= 2;
+        }
+        return exponentBinary;
     }
     private int computeMantissa(float form1f){
         float decimals = form1f - (int)form1f;
