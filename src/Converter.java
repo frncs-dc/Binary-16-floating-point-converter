@@ -9,6 +9,14 @@ public class Converter extends JFrame{
     private JLabel outputLabel;
     private JButton outputInTextFileButton;
 
+    /*
+        @param  input   - the input to check if binary or decimal
+        @return true if binary value, false if decimal
+    */
+    static boolean checkBinary(String input) {
+        return input.contains("x2");
+    }
+
     public Converter() {
         this.setContentPane(this.converterPanel);
         this.setTitle("Binary-16 floating point converter");
