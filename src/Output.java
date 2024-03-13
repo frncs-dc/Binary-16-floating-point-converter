@@ -5,6 +5,9 @@ public class Output {
     public String exponent;
     public String mantissa;
 
+    //util
+    private final int bias = 15;
+
     public void extractValues(String binaryNum){
         //-1.101 x 2^something
 
@@ -38,5 +41,38 @@ public class Output {
 
     public boolean isNegative(String binaryNum){
         return binaryNum.startsWith("-");
+    }
+    private String computeBias(){
+        int exponentDecimal = Integer.parseInt(exponent) + bias;
+        String exponentBinary = "";
+
+        for (int count = 0; count < 5; count++){
+            if(exponentDecimal % 2 == 1){
+                exponentBinary = "1" + exponentBinary;
+            }
+            else{
+                exponentBinary = "0" + exponentBinary;
+            }
+            exponentDecimal /= 2;
+        }
+
+        return exponentBinary;
+    }
+
+    public String completeMantissa(){
+        String mantissa = this.mantissa.substring(0, this.mantissa.length()-1);
+
+        while(mantissa.length() < 10){
+            mantissa += "0";
+        }
+        return mantissa;
+    }
+    public String getBinaryOutput(){
+        String output = "";
+        output += sign + " ";
+        output += computeBias() + " ";
+        output += completeMantissa();
+
+        return output;
     }
 }
