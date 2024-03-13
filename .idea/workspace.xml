@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="feat: added basic gui">
+    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="feat: added Output.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
     </list>
+    <list id="89fd4119-0b50-4063-89c1-eab211a939ca" name="Changes by Gab PC" comment="Changes by Gab PC" />
+    <list id="27cdb381-a567-42ee-b1c9-7d476ceaed74" name="Changes by mukbookpro" comment="" />
+    <list id="0afb6625-4817-4675-ba05-5f3945e7b061" name="Changes by natha" comment="Changes by natha" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +25,23 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "frncs-dc"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="858b2537-247d-4792-be68-8ca89536123d" />
+        <option name="url" value="https://github.com/frncs-dc/Binary-16-floating-point-converter.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -62,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710251978531</updated>
       <workItem from="1710251979661" duration="1556000" />
-      <workItem from="1710289029391" duration="183000" />
+      <workItem from="1710289029391" duration="9066000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
@@ -72,14 +93,54 @@
       <option name="project" value="LOCAL" />
       <updated>1710252917290</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: changed basic gui">
+      <option name="closed" value="true" />
+      <created>1710292146799</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710292146799</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: added checkBinary method">
+      <option name="closed" value="true" />
+      <created>1710293092728</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710293092728</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: added Output.java">
+      <option name="closed" value="true" />
+      <created>1710302692065</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710302692065</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: added basic gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added basic gui" />
+    <MESSAGE value="feat: changed basic gui" />
+    <MESSAGE value="Changes by Gab PC" />
+    <MESSAGE value="feat: added checkBinary method" />
+    <MESSAGE value="Changes by natha" />
+    <MESSAGE value="feat: added Output.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added Output.java" />
   </component>
 </project>

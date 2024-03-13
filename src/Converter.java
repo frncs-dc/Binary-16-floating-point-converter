@@ -18,7 +18,80 @@ public class Converter extends JFrame{
         return input.contains("x2");
     }
 
+
+    /**
+     * @param input 
+     * @return
+     */
+    public static String decimal_toBinary(String input){
+//      String[] inputs = input.split("x10");
+
+        String[] inputs = input.split("\\.");
+        int wholeNumber = Integer.parseInt(inputs[0]); // whole number value
+        String strDeciNumber = "0." + Integer.parseInt(inputs[1]);
+        float deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
+
+//        gets the exponent
+//        String[] exponent = inputs[1].split("\\^");
+//        int exp = Integer.parseInt(exponent[1]);
+
+        int[] binaryNum = new int[1000];
+
+        int i = 0;
+        while(wholeNumber > 0){
+            binaryNum[i] = wholeNumber % 2;  //remainder is stored
+            wholeNumber = wholeNumber / 2;             //divide for next iteration until n = 0
+            i++;
+        }
+
+        String finalBinary = "";
+        
+
+        for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
+            finalBinary += binaryNum[j]; // add latest binary value
+        }
+        if(deciNumber > 0.0000){
+            finalBinary += "."; // appending the decimal point
+        }
+        while(deciNumber > 0.0000){
+            deciNumber *= 2;  // multiply 2 for the decimal point to convert to base-2
+
+            if(deciNumber >= 1.0){
+                deciNumber -= 1; // if it is more than 1.0 we subtract 1 and append it to the decimal point of base-2
+                finalBinary += "1";
+            }
+            else {
+                finalBinary += "0" ;// else if it is not more than 1.0 we append 0 in the decimal point of base-2
+            }
+        }
+
+        return String.valueOf(finalBinary);
+    }
+
+    /** @param input 
+     *
+     */
+    static String expand(String input){
+        String[] expandedNumber = input.split("[x^]");
+        double number = Double.parseDouble(expandedNumber[0]);
+        int base = Integer.parseInt(expandedNumber[1]);
+        int exponent = Integer.parseInt(expandedNumber[2]);
+
+        return String.valueOf(number * Math.pow(base, exponent));
+    }
+
     public Converter() {
+
+        String input = inputField.getText();
+        boolean negative = input.contains("-");
+        if (negative){input = input.substring(1);}
+
+        if (!checkBinary(input)){
+            decimal_toBinary(expand(input));
+        }
+
+
+
         this.setContentPane(this.converterPanel);
         this.setTitle("Binary-16 floating point converter");
         this.setSize(300,200);
