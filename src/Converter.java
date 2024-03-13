@@ -93,6 +93,50 @@ public class Converter extends JFrame {
         return String.valueOf(number * Math.pow(base, exponent));
     }
 
+    static String getHexLetter(int value){
+        switch (value){
+            case 10:
+                return "A";
+            case 11:
+                return "B";
+            case 12:
+                return "C";
+            case 13:
+                return "D";
+            case 14:
+                return "E";
+            case 15:
+                return "F";
+            default:
+                return String.valueOf(value);
+        }
+    }
+
+    static String convertToHex(String binaryInput){
+        // 1000 0110 0010 0001
+        String[] binGroups = new String[4];
+        int[] hexValues = new int[]{8, 4, 2, 1};
+        int[] hexRawValue = new int[4];
+        String finalHex = "";
+        int beginIndex = 0;
+        int endIndex = 3;
+        for(int i = 0; i < 4; i++){
+            binGroups[i] = binaryInput.substring(beginIndex,endIndex);
+            beginIndex+=4;
+            endIndex+=4;
+        }
+
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++) {
+                hexRawValue[i] += (binGroups[i].charAt(j) - '0') * hexValues[j];
+            }
+
+            finalHex += getHexLetter(hexRawValue[i]);
+        }
+
+        return finalHex;
+    }
+
     public Converter() {
         convertBtn.addActionListener(new ActionListener() {
             @Override
