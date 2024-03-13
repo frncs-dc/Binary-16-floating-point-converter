@@ -1,6 +1,9 @@
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import static java.lang.Math.abs;
 /*
-Input: integer binary number
+Input: integer binary number non 1f form
 
  */
 public class Compute {
@@ -8,10 +11,10 @@ public class Compute {
     private float binaryNum;
     //Parts of the floating point
     private int signBit;
-    private int exponent;
-    private int mantissa;
+    private String exponent;
+    private String mantissa;
     //Utils
-    private float form1f;
+    private double form1f;
     private int exponentCount = 0;
     private final int bias = 15;
     Compute(float binaryNum){
@@ -27,7 +30,8 @@ public class Compute {
         //mantissa = substr 7-16
     }
 
-    private float convertTo1f(float binaryNum){
+    private double convertTo1f(float unconvertedNum){
+        double binaryNum = unconvertedNum;
         if(binaryNum < 2 && binaryNum > 0){
             return binaryNum;
         }
@@ -48,37 +52,48 @@ public class Compute {
         return binaryNum;
     }
 
-    private int computeBias(){
+    private String computeBias(){
         int exponentDecimal = exponentCount + bias;
-        int exponentBinary = 0;
-        while(exponentDecimal > 0){
+        String exponentBinary = "";
+
+        for (int count = 0; count < 5; count++){
             if(exponentDecimal % 2 == 1){
-                exponentBinary = exponentBinary * 10 + 1;
+                exponentBinary = "1" + exponentBinary;
             }
             else{
-                exponentBinary = exponentBinary * 10;
+                exponentBinary = "0" + exponentBinary;
             }
-
             exponentDecimal /= 2;
         }
+//        while(exponentDecimal > 0){
+//            if(exponentDecimal % 2 == 1){
+//                exponentBinary = exponentBinary * 10 + 1;
+//            }
+//            else{
+//                exponentBinary = exponentBinary * 10;
+//            }
+//
+//            exponentDecimal /= 2;
+//        }
         return exponentBinary;
     }
-    private int computeMantissa(float form1f){
-        float decimals = form1f - (int)form1f;
-        int mantissa = 0;
+    private String computeMantissa(double form1f){
+        double decimals = form1f - (int)form1f;
+        String mantissa = "";
 
         for(int count = 0; count <10; count++){
             decimals *= 10;
-            mantissa = mantissa * 10 + (int)decimals;
-            decimals -= (int)decimals;
+            int whole = (int)decimals;
+            mantissa = mantissa + whole;
+            decimals -= whole;
         }
         return mantissa;
     }
 
     public String getFullOutput(){
         String fullOutput = "";
-        fullOutput += signBit;
-        fullOutput += exponent;
+        fullOutput += signBit + " ";
+        fullOutput += exponent + " ";
         fullOutput += mantissa;
         return fullOutput;
     }
