@@ -23,19 +23,19 @@ public class Converter extends JFrame{
      * @param input 
      * @return
      */
-    public static String decimal_toBinary(String input){
+    public static String decimal_toBinary(String input){ //  function to convert decimal to binary
 //      String[] inputs = input.split("x10");
         int wholeNumber = 0;
         float deciNumber = 0.0f;
 
-        if(input.contains(".")) {
+        if(input.contains(".")) {  // if given string has a decimal point
             String[] inputs = input.split("\\.");
             wholeNumber = Integer.parseInt(inputs[0]); // whole number value
             deciNumber = 0.0f;
             String strDeciNumber = "0." + Integer.parseInt(inputs[1]);
             deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
         }
-        else{
+        else{ //  if  given does not have a decimal point
             String[] inputs = input.split("\\.");
             wholeNumber = Integer.parseInt(inputs[0]); // whole number value
             deciNumber = 0.0f;
@@ -48,14 +48,15 @@ public class Converter extends JFrame{
         int i = 0;
         while(wholeNumber > 0){
             binaryNum[i] = wholeNumber % 2;  //remainder is stored
-            wholeNumber = wholeNumber / 2;             //divide for next iteration until n = 0
+            wholeNumber = wholeNumber / 2;   //divide for next iteration until n = 0
             i++;
         }
 
         String finalBinary = "";
 
         for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
-            finalBinary = finalBinary + binaryNum[j];
+            finalBinary = finalBinary + binaryNum[j];  //concat reversely the array that contains the modulo by 2
+                                                       // as we store the modulo from end to  start
         }
 
         if(deciNumber > 0.0000){
@@ -65,16 +66,16 @@ public class Converter extends JFrame{
                 deciNumber *= 2;
 
                 if(deciNumber >= 1.0){
-                    deciNumber -= 1;
-                    finalBinary += "1";
+                    deciNumber -= 1;  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
+                    finalBinary += "1"; //  if true we now append 1
                 }
                 else {
-                    finalBinary += "0";
+                    finalBinary += "0"; // if not more than 1 append 0
                 }
             }
         }
 
-        return String.valueOf(finalBinary);
+        return String.valueOf(finalBinary); // returns the converted decimal to binary as string
     }
 
     /** @param input 
