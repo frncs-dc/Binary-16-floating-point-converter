@@ -27,20 +27,19 @@ public class Converter extends JFrame {
      * @return  converted Binary
      */
     public static String decimalToBinary(String input){ //  function to convert decimal to binary
-//      String[] inputs = input.split("x10");
-        int wholeNumber = 0;
-        float deciNumber = 0.0f;
 
-        if(input.contains(".")) {  // if given string has a decimal point
-            String[] inputs = input.split("\\.");
-            wholeNumber = Integer.parseInt(inputs[0]); // whole number value
-            deciNumber = 0.0f;
-            String strDeciNumber = "0." + Integer.parseInt(inputs[1]);
+        int wholeNumber;
+        float deciNumber;
+        String finalBinary = "";
+
+        if (input.contains(".")) {  // if given string has a decimal value
+            String[] floatingNumber = input.split("\\.");
+            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
+            String strDeciNumber = "0." + Integer.parseInt(floatingNumber[1]);
             deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
-        }
-        else{ //  if  given does not have a decimal point
-            String[] inputs = input.split("\\.");
-            wholeNumber = Integer.parseInt(inputs[0]); // whole number value
+        } else { // if  given does not have a decimal value
+            String[] floatingNumber = input.split("\\.");
+            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
             deciNumber = 0.0f;
         }
 //        gets the exponent
@@ -55,8 +54,6 @@ public class Converter extends JFrame {
             i++;
         }
 
-        String finalBinary = "";
-
         for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
             finalBinary = finalBinary + binaryNum[j];  //concat reversely the array that contains the modulo by 2
                                                        // as we store the modulo from end to  start
@@ -64,33 +61,17 @@ public class Converter extends JFrame {
 
         if(deciNumber > 0.0000){
             finalBinary += "."; // appending the decimal point
-
             while(deciNumber > 0.0){
                 deciNumber *= 2;
-
                 if(deciNumber >= 1.0){
                     deciNumber -= 1;  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
                     finalBinary += "1"; //  if true we now append 1
-                }
-                else {
+                } else {
                     finalBinary += "0"; // if not more than 1 append 0
                 }
             }
         }
-
-        return String.valueOf(finalBinary); // returns the converted decimal to binary as string
-    }
-
-    /** @param input 
-     *
-     */
-    static String expand(String input){
-        String[] expandedNumber = input.split("[x^]");
-        double number = Double.parseDouble(expandedNumber[0]);
-        int base = Integer.parseInt(expandedNumber[1]);
-        int exponent = Integer.parseInt(expandedNumber[2]);
-
-        return String.valueOf(number * Math.pow(base, exponent));
+        return finalBinary; // returns the converted decimal to binary as string
     }
 
     static String getHexLetter(int value){
@@ -137,23 +118,36 @@ public class Converter extends JFrame {
         return finalHex;
     }
 
+    static String checkNegative (String input, Output output) {
+        if (input.startsWith("-")){
+            output.sign = "1";
+            return input.substring(1);
+        } else {
+            output.sign = "0";
+            return input;
+        }
+    }
+
     public Converter() {
         convertBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Output output = new Output();
-                String value = null;
+                String binaryNum = null;
+                String convertedNum;
                 String input = inputField.getText();
-                boolean isNegative = input.contains("-");
-                if (isNegative){input = input.substring(1);}
+                input = checkNegative(input, output);
 
                 if (!checkBinary(input)){ // check if Binary
-                    value = decimalToBinary(expand(input)); // if not convert
+                    binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
+                    convertedNum = output.convertTo1f(binaryNum);
+                    output.computeBias();
+                    output.completeMantissa(convertedNum);
                 }
 
                 // TODO: make function to standardize binary to 1.f before passing to extractValues
 
-                output.extractValues(value);
+                output.extractValues(binaryNum);
 
                 signBitField.setText(output.sign);
                 expField.setText(output.exponent);

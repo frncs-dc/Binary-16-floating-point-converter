@@ -1,12 +1,97 @@
+import java.math.BigDecimal;
+
 public class Output {
 
     //attributes
     public String sign;
     public String exponent;
     public String mantissa;
+    public String exponentBias;
 
     //util
     private final int bias = 15;
+
+    public String expandDecimal(String input){
+        String[] expandedNumber = input.split("[x^]");
+        double number = Double.parseDouble(expandedNumber[0]);
+        int base = Integer.parseInt(expandedNumber[1]);
+        int exp = Integer.parseInt(expandedNumber[2]);
+        this.exponent = "0";
+
+        return String.valueOf(number * Math.pow(base, exp));
+    }
+
+    public void computeBias(){
+        String exponentDecimal = String.valueOf(Integer.parseInt(exponent) + bias);
+        String tempBias = Converter.decimalToBinary(exponentDecimal);
+        while (tempBias.length() < 5) {
+            tempBias = "0" + tempBias;
+        }
+        this.exponentBias = tempBias;
+
+//        String exponentBinary = "";
+//
+//        for (int count = 0; count < 5; count++){
+//            if(exponentDecimal % 2 == 1){
+//                exponentBinary = "1" + exponentBinary;
+//            }
+//            else{
+//                exponentBinary = "0" + exponentBinary;
+//            }
+//            exponentDecimal /= 2;
+//        }
+
+//        return exponentBinary;
+    }
+
+    public String convertTo1f(String unconvertedNum){
+        BigDecimal binaryNum = new BigDecimal(unconvertedNum);
+        BigDecimal mul1 = new BigDecimal("10");
+        BigDecimal mul2 = new BigDecimal("0.1");
+        int minusExponent = 0;
+        int addExponent = 0;
+        if( (binaryNum.signum() < 2 && binaryNum.signum() > 0) || binaryNum.signum() == 0){
+            return String.valueOf(binaryNum);
+        }
+        // binaryNum 0.XX
+        else if (binaryNum.signum() < 2){
+            while(binaryNum.signum() < 2){
+                binaryNum = binaryNum.multiply(mul1);
+                minusExponent++;
+            }
+        }
+        //binaryNum 1XX
+        else if (binaryNum.signum() > 2){
+            while(binaryNum.signum() > 2){
+                binaryNum = binaryNum.multiply(mul2);
+                addExponent++;
+            }
+        }
+
+        this.exponent = String.valueOf(Integer.parseInt(exponent) - minusExponent + addExponent);
+        return String.valueOf(binaryNum);
+    }
+
+    public void completeMantissa(String convertedNum){
+
+        String tempMantissa = convertedNum.substring(2);
+
+//        String mantissa = this.mantissa.substring(0, this.mantissa.length()-1);
+
+        while(tempMantissa.length() < 10){
+            tempMantissa += "0";
+        }
+        this.mantissa = tempMantissa;
+    }
+    public String getBinaryOutput(){
+        String output = "";
+        output += sign + " ";
+        output += exponentBias + " ";
+//        output += completeMantissa();
+
+        return output;
+    }
+
 
     public void extractValues(String binaryNum){
         //-1.101 x 2^something
@@ -36,43 +121,10 @@ public class Output {
 
             System.out.println("Sign: " + this.sign +" Exponent: "+this.exponent+" Mantissa: "+this.mantissa);
         }
-        
+
     }
 
     public boolean isNegative(String binaryNum){
         return binaryNum.startsWith("-");
-    }
-    private String computeBias(){
-        int exponentDecimal = Integer.parseInt(exponent) + bias;
-        String exponentBinary = "";
-
-        for (int count = 0; count < 5; count++){
-            if(exponentDecimal % 2 == 1){
-                exponentBinary = "1" + exponentBinary;
-            }
-            else{
-                exponentBinary = "0" + exponentBinary;
-            }
-            exponentDecimal /= 2;
-        }
-
-        return exponentBinary;
-    }
-
-    public String completeMantissa(){
-        String mantissa = this.mantissa.substring(0, this.mantissa.length()-1);
-
-        while(mantissa.length() < 10){
-            mantissa += "0";
-        }
-        return mantissa;
-    }
-    public String getBinaryOutput(){
-        String output = "";
-        output += sign + " ";
-        output += computeBias() + " ";
-        output += completeMantissa();
-
-        return output;
     }
 }
