@@ -48,21 +48,23 @@ public class Output {
         BigDecimal binaryNum = new BigDecimal(unconvertedNum);
         BigDecimal mul1 = new BigDecimal("10");
         BigDecimal mul2 = new BigDecimal("0.1");
+        BigDecimal two = new BigDecimal("2");
+        BigDecimal zero = new BigDecimal("0");
         int minusExponent = 0;
         int addExponent = 0;
-        if( (binaryNum.signum() < 2 && binaryNum.signum() > 0) || binaryNum.signum() == 0){
+        if( (binaryNum.compareTo(two) < 0 && binaryNum.compareTo(zero) > 0) || binaryNum.compareTo(zero) == 0){
             return String.valueOf(binaryNum);
         }
         // binaryNum 0.XX
-        else if (binaryNum.signum() < 2){
-            while(binaryNum.signum() < 2){
+        else if (binaryNum.compareTo(two) < 0){
+            while(binaryNum.compareTo(two) < 0){
                 binaryNum = binaryNum.multiply(mul1);
                 minusExponent++;
             }
         }
         //binaryNum 1XX
-        else if (binaryNum.signum() > 2){
-            while(binaryNum.signum() > 2){
+        else if (binaryNum.compareTo(two) > 0){
+            while(binaryNum.compareTo(two) > 0){
                 binaryNum = binaryNum.multiply(mul2);
                 addExponent++;
             }
