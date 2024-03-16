@@ -133,7 +133,7 @@ public class Converter extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Output output = new Output();
-                String binaryNum = null;
+                String binaryNum;
                 String convertedNum;
                 String input = inputField.getText();
                 input = checkNegative(input, output);
@@ -143,14 +143,18 @@ public class Converter extends JFrame {
                     convertedNum = output.convertTo1f(binaryNum);
                     output.computeBias();
                     output.completeMantissa(convertedNum);
+                } else if (checkBinary(input)) {
+                    convertedNum = output.convertTo1f(output.expandBinary(input));
+                    output.computeBias();
+                    output.completeMantissa(convertedNum);
                 }
 
                 // TODO: make function to standardize binary to 1.f before passing to extractValues
 
-                output.extractValues(binaryNum);
+//                output.extractValues(binaryNum);
 
                 signBitField.setText(output.sign);
-                expField.setText(output.exponent);
+                expField.setText(output.exponentBias);
                 mantissaField.setText(output.mantissa);
             }
         });
@@ -158,7 +162,7 @@ public class Converter extends JFrame {
 
         this.setContentPane(this.converterPanel);
         this.setTitle("Binary-16 floating point converter");
-        this.setSize(300,200);
+        this.setSize(300,400);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
