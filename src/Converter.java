@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Converter extends JFrame {
     private JButton convertBtn;
@@ -127,8 +130,31 @@ public class Converter extends JFrame {
             return input;
         }
     }
+    private void writeOutputToTextFile(String content) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save Output as Text File");
+        int userSelection = fileChooser.showSaveDialog(this);
 
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            try {
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                // Append ".txt" extension if not present
+                if (!filePath.toLowerCase().endsWith(".txt")) {
+                    filePath += ".txt";
+                }
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+                writer.write(content);
+                writer.close();
+                JOptionPane.showMessageDialog(this, "Output has been written to the file: " + filePath, "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error writing to file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
     public Converter() {
+
         convertBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -160,8 +186,19 @@ public class Converter extends JFrame {
                 mantissaField.setText(output.mantissa);
                 hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
             }
+
         });
 
+        outputInTextFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String content = "Sign Bit: " + signBitField.getText() + "\n" +
+                        "Exponent: " + expField.getText() + "\n" +
+                        "Mantissa: " + mantissaField.getText() + "\n" +
+                        "Hexadecimal: " + hexField.getText();
+                writeOutputToTextFile(content);
+            }
+        });
 
         this.setContentPane(this.converterPanel);
         this.setTitle("Binary-16 floating point converter");
