@@ -141,12 +141,18 @@ public class Converter extends JFrame {
                 if (!checkBinary(input)){ // check if Binary
                     binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
                     convertedNum = output.convertTo1f(binaryNum);
-                    output.computeBias();
-                    output.completeMantissa(convertedNum);
+                    // check if special case
+                    if(!output.isSpecialCase(convertedNum)){
+                        output.computeBias();
+                        output.completeMantissa(convertedNum);
+                    }
                 } else if (checkBinary(input)) {
                     convertedNum = output.convertTo1f(output.expandBinary(input));
-                    output.computeBias();
-                    output.completeMantissa(convertedNum);
+                    // check if special case
+                    if(!output.isSpecialCase(convertedNum)){
+                        output.computeBias();
+                        output.completeMantissa(convertedNum);
+                    }
                 }
 
                 signBitField.setText(output.sign);

@@ -11,6 +11,23 @@ public class Output {
     //util
     private final int bias = 15;
 
+    public boolean isSpecialCase (String binaryInput){
+        String[] exp = binaryInput.split("x2\\^");
+        for (String a : exp){
+            System.out.println(a);
+        }
+        if(Integer.parseInt(exponent) > 15){
+            this.exponentBias = "11111";
+            this.mantissa = "0000000000";
+            return true;
+        } else if (Double.parseDouble(binaryInput) == 0) {
+            this.exponentBias = "00000";
+            this.mantissa = "0000000000";
+            return true;
+        }
+
+        return false;
+    }
     public String expandDecimal(String input){
         String[] expandedNumber = input.split("[x^]");
         double number = Double.parseDouble(expandedNumber[0]);
@@ -85,9 +102,11 @@ public class Output {
     }
 
     public void completeMantissa(String convertedNum){
+        String tempMantissa = "";
 
-        String tempMantissa = convertedNum.substring(2);
-
+        if (convertedNum.contains(".")){
+            tempMantissa = convertedNum.substring(2);
+        }
 //        String mantissa = this.mantissa.substring(0, this.mantissa.length()-1);
 
         while(tempMantissa.length() < 10){

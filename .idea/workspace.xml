@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="refactor: fixed convertTo1f">
+    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed conversion to hex">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Converter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Output.java" afterDir="false" />
     </list>
     <list id="89fd4119-0b50-4063-89c1-eab211a939ca" name="Changes by Gab PC" comment="Changes by Gab PC" />
     <list id="27cdb381-a567-42ee-b1c9-7d476ceaed74" name="Changes by mukbookpro" comment="" />
@@ -102,6 +102,7 @@
       <workItem from="1710303236618" duration="716000" />
       <workItem from="1710336104130" duration="998000" />
       <workItem from="1710376913111" duration="10957000" />
+      <workItem from="1710648402601" duration="11649000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
@@ -167,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710389848698</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix: fixed conversion to hex">
+      <option name="closed" value="true" />
+      <created>1710646284790</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710646284790</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +204,7 @@
     <MESSAGE value="feat: added implementation of convertBtn" />
     <MESSAGE value="feat: reworked logic" />
     <MESSAGE value="refactor: fixed convertTo1f" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: fixed convertTo1f" />
+    <MESSAGE value="fix: fixed conversion to hex" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed conversion to hex" />
   </component>
 </project>
