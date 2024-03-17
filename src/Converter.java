@@ -13,6 +13,7 @@ public class Converter extends JFrame {
     private JLabel signBitField;
     private JLabel expField;
     private JLabel mantissaField;
+    private JLabel hexField;
 
     /**
      * @param input the input to check if binary or decimal
@@ -94,13 +95,13 @@ public class Converter extends JFrame {
     }
 
     static String convertToHex(String binaryInput){
-        // 1000 0110 0010 0001
         String[] binGroups = new String[4];
         int[] hexValues = new int[]{8, 4, 2, 1};
         int[] hexRawValue = new int[4];
         String finalHex = "";
         int beginIndex = 0;
-        int endIndex = 3;
+        int endIndex = 4;
+
         for(int i = 0; i < 4; i++){
             binGroups[i] = binaryInput.substring(beginIndex,endIndex);
             beginIndex+=4;
@@ -111,7 +112,6 @@ public class Converter extends JFrame {
             for (int j = 0; j < 4; j++) {
                 hexRawValue[i] += (binGroups[i].charAt(j) - '0') * hexValues[j];
             }
-
             finalHex += getHexLetter(hexRawValue[i]);
         }
 
@@ -149,13 +149,10 @@ public class Converter extends JFrame {
                     output.completeMantissa(convertedNum);
                 }
 
-                // TODO: make function to standardize binary to 1.f before passing to extractValues
-
-//                output.extractValues(binaryNum);
-
                 signBitField.setText(output.sign);
                 expField.setText(output.exponentBias);
                 mantissaField.setText(output.mantissa);
+                hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
             }
         });
 
