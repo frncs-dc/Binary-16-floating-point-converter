@@ -76,6 +76,8 @@ public class Converter extends JFrame {
                 }
             }
         }
+
+        System.out.println("Binary:" + finalBinary);
         return finalBinary; // returns the converted decimal to binary as string
     }
 
@@ -168,6 +170,7 @@ public class Converter extends JFrame {
                     input = checkNegative(input, output);
 
                     if (!checkBinary(input)){ // check if Binary
+                        System.out.println("Expand: " + output.expandDecimal(input));
                         binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
                         convertedNum = output.convertTo1f(binaryNum);
                         // check if special case
@@ -189,6 +192,7 @@ public class Converter extends JFrame {
                     mantissaField.setText(output.mantissa);
                     hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
                 } catch (Exception error) {
+                    System.out.println(error);
                     errorMsg.setText("ERROR: Invalid Input. Please try again.");
                     signBitField.setText("");
                     expField.setText("");

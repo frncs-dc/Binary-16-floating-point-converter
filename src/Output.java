@@ -69,12 +69,14 @@ public class Output {
 
     public String expandDecimal(String input){
         String[] expandedNumber = input.split("[x^]");
-        double number = Double.parseDouble(expandedNumber[0]);
         int base = Integer.parseInt(expandedNumber[1]);
         int exp = Integer.parseInt(expandedNumber[2]);
         this.exponent = "0";
 
-        return String.valueOf(number * Math.pow(base, exp));
+        BigDecimal power = BigDecimal.valueOf(Math.pow(base, exp));
+        BigDecimal number = new BigDecimal(expandedNumber[0]);
+
+        return String.valueOf(power.multiply(number));
     }
 
     public String expandBinary(String input){
