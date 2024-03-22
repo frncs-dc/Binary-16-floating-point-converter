@@ -16,18 +16,57 @@ public class Output {
         for (String a : exp){
             System.out.println(a);
         }
+        //super large number
         if(Integer.parseInt(exponent) > 15){
             this.exponentBias = "11111";
             this.mantissa = "0000000000";
             return true;
-        } else if (Double.parseDouble(binaryInput) == 0) {
+        }
+        //zero
+        else if (Double.parseDouble(binaryInput) == 0) {
             this.exponentBias = "00000";
             this.mantissa = "0000000000";
+            return true;
+        }
+        //super small number, < x2^-14
+        else if (Integer.parseInt(exponent) < -14)
+        {
+            System.out.println("less than -14");
+
+            this.exponentBias = "00000";
+
+            this.mantissa = calculateDenormalizedMantissa(binaryInput, (Integer.parseInt(exponent) + 14) * -1);
             return true;
         }
 
         return false;
     }
+
+    public String calculateDenormalizedMantissa(String binary, int shiftDecimal){
+        System.out.println("My binary is" + binary + " and my exponent to shift is " + shiftDecimal);
+        //shift decimal place to left for each shiftDecimal values
+        BigDecimal binaryBigDecimal = new BigDecimal(binary);
+        BigDecimal pointOne = new BigDecimal("0.1");
+        while(shiftDecimal > 0){
+            binaryBigDecimal = binaryBigDecimal.multiply(pointOne);
+            shiftDecimal--;
+        }
+        // ensure the mantissa is 10 bits
+        System.out.println("My double is " + binaryBigDecimal.toPlainString());
+        String binaryString = binaryBigDecimal.toPlainString();
+        binaryString = binaryString.substring(2);
+
+        while(binaryString.length() < 10){
+            binaryString += "0";
+        }
+        if(binaryString.length() > 10){
+            binaryString = binaryString.substring(0, 10);
+        }
+
+        System.out.println("My binary string is " + binaryString);
+        return binaryString;
+    }
+
     public String expandDecimal(String input){
         String[] expandedNumber = input.split("[x^]");
         double number = Double.parseDouble(expandedNumber[0]);
