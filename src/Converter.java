@@ -17,6 +17,7 @@ public class Converter extends JFrame {
     private JLabel expField;
     private JLabel mantissaField;
     private JLabel hexField;
+    private JLabel errorMsg;
 
     /**
      * @param input the input to check if binary or decimal
@@ -162,29 +163,38 @@ public class Converter extends JFrame {
                 String binaryNum;
                 String convertedNum;
                 String input = inputField.getText();
-                input = checkNegative(input, output);
+                try {
+                    errorMsg.setText("");
+                    input = checkNegative(input, output);
 
-                if (!checkBinary(input)){ // check if Binary
-                    binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
-                    convertedNum = output.convertTo1f(binaryNum);
-                    // check if special case
-                    if(!output.isSpecialCase(convertedNum)){
-                        output.computeBias();
-                        output.completeMantissa(convertedNum);
+                    if (!checkBinary(input)){ // check if Binary
+                        binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
+                        convertedNum = output.convertTo1f(binaryNum);
+                        // check if special case
+                        if(!output.isSpecialCase(convertedNum)){
+                            output.computeBias();
+                            output.completeMantissa(convertedNum);
+                        }
+                    } else if (checkBinary(input)) {
+                        convertedNum = output.convertTo1f(output.expandBinary(input));
+                        // check if special case
+                        if(!output.isSpecialCase(convertedNum)){
+                            output.computeBias();
+                            output.completeMantissa(convertedNum);
+                        }
                     }
-                } else if (checkBinary(input)) {
-                    convertedNum = output.convertTo1f(output.expandBinary(input));
-                    // check if special case
-                    if(!output.isSpecialCase(convertedNum)){
-                        output.computeBias();
-                        output.completeMantissa(convertedNum);
-                    }
+
+                    signBitField.setText(output.sign);
+                    expField.setText(output.exponentBias);
+                    mantissaField.setText(output.mantissa);
+                    hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
+                } catch (Exception error) {
+                    errorMsg.setText("ERROR: Invalid Input. Please try again.");
+                    signBitField.setText("");
+                    expField.setText("");
+                    mantissaField.setText("");
+                    hexField.setText("");
                 }
-
-                signBitField.setText(output.sign);
-                expField.setText(output.exponentBias);
-                mantissaField.setText(output.mantissa);
-                hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
             }
 
         });
