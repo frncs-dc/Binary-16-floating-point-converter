@@ -156,6 +156,17 @@ public class Converter extends JFrame {
             }
         }
     }
+
+    private void checkValidBinary(String input) throws Exception {
+        String[] binaryString = input.split("x2");
+        for (int i = 0; i < binaryString[0].length(); i++) {
+            // If the character is not '0' or '1', return false
+            if (binaryString[0].charAt(i) != '0' && binaryString[0].charAt(i) != '1' && binaryString[0].charAt(i) != '.') {
+                throw new Exception();
+            }
+        }
+    }
+
     public Converter() {
 
         convertBtn.addActionListener(new ActionListener() {
@@ -170,7 +181,6 @@ public class Converter extends JFrame {
                     input = checkNegative(input, output);
 
                     if (!checkBinary(input)){ // check if Binary
-                        System.out.println("Expand: " + output.expandDecimal(input));
                         binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
                         convertedNum = output.convertTo1f(binaryNum);
                         // check if special case
@@ -179,6 +189,7 @@ public class Converter extends JFrame {
                             output.completeMantissa(convertedNum);
                         }
                     } else if (checkBinary(input)) {
+                        checkValidBinary(input);
                         convertedNum = output.convertTo1f(output.expandBinary(input));
                         // check if special case
                         if(!output.isSpecialCase(convertedNum)){
