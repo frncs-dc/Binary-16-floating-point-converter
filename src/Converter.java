@@ -35,6 +35,7 @@ public class Converter extends JFrame {
      */
     public static String decimalToBinary(String input){ //  function to convert decimal to binary
 
+        BigDecimal inp = new BigDecimal(input);
         BigDecimal ZERO = new BigDecimal("0");
         BigDecimal TWO = new BigDecimal("2");
         BigDecimal ONE = new BigDecimal("1");
@@ -43,12 +44,12 @@ public class Converter extends JFrame {
         String finalBinary = "";
 
         if (input.contains(".")) {
-            String[] decimalNum = input.split("\\.");
+            String[] decimalNum = inp.toPlainString().split("\\.");
             wholeNum = new BigDecimal(decimalNum[0]);
             deciNum =  new BigDecimal("0." + decimalNum[1]);
             System.out.println("CONTAINS DECIMAL");
         } else {
-            String[] decimalNum = input.split("\\.");
+            String[] decimalNum = inp.toPlainString().split("\\.");
             wholeNum = new BigDecimal(decimalNum[0]);
             deciNum = new BigDecimal("0.0");
             System.out.println("CONTAINS NO DECIMAL");
@@ -71,14 +72,20 @@ public class Converter extends JFrame {
         int[] binaryNum = new int[1000];
         int i = 0;
 //        System.out.println("THIS NUM: " + wholeNum);
-        while (wholeNum.compareTo(ZERO) > 0) {
-            binaryNum[i] = Integer.parseInt(String.valueOf(wholeNum.remainder(TWO)));
+        if (wholeNum.compareTo(ZERO) > 0) {
+            while (wholeNum.compareTo(ZERO) > 0) {
+                binaryNum[i] = Integer.parseInt(String.valueOf(wholeNum.remainder(TWO)));
 //            System.out.println("CURRENT INPUT: " + binaryNum[i]);
 //            System.out.println("OLD NUM: " + wholeNum);
-            wholeNum = wholeNum.divide(TWO).setScale(0, RoundingMode.FLOOR);
+                wholeNum = wholeNum.divide(TWO).setScale(0, RoundingMode.FLOOR);
 //            System.out.println("NEW NUM: " + wholeNum);
+                i++;
+            }
+        } else if (wholeNum.compareTo(ZERO) == 0) {
+            binaryNum[0] = 0;
             i++;
         }
+
 
 //        while(wholeNumber > 0){
 //            binaryNum[i] = wholeNumber % 2;  //remainder is stored
@@ -123,7 +130,7 @@ public class Converter extends JFrame {
 //            }
 //        }
 
-        System.out.println("Binary:" + finalBinary);
+        System.out.println("Binary: " + finalBinary);
         return finalBinary; // returns the converted decimal to binary as string
     }
 
@@ -269,7 +276,9 @@ public class Converter extends JFrame {
 
                         if (!checkBinary(input)){ // check if Binary
                             binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
+                            System.out.println("BIN: " + binaryNum);
                             convertedNum = output.convertTo1f(binaryNum);
+                            System.out.println("CHECKING SPECIAL CASe");
                             // check if special case
                             if(!output.isSpecialCase(convertedNum)){
                                 output.computeBias();

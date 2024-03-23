@@ -16,6 +16,10 @@ public class Output {
         for (String a : exp){
             System.out.println(a);
         }
+
+        System.out.println("BIN: " + binaryInput);
+        System.out.println("DBIN: " + Double.parseDouble(binaryInput));
+
         //super large number
         if(Integer.parseInt(exponent) > 15){
             this.exponentBias = "11111";
@@ -103,7 +107,7 @@ public class Output {
 
         System.out.println("EXPAND: " + power.multiply(number));
 
-        return String.valueOf(power.multiply(number));
+        return power.multiply(number).toPlainString();
     }
 
     public String expandBinary(String input){
@@ -148,7 +152,7 @@ public class Output {
         BigDecimal zero = new BigDecimal("0");
         int minusExponent = 0;
         int addExponent = 0;
-        if( (binaryNum.compareTo(two) < 0 && binaryNum.compareTo(one) > 0) || binaryNum.compareTo(one) == 0){
+        if( (binaryNum.compareTo(two) < 0 && binaryNum.compareTo(one) > 0) || binaryNum.compareTo(one) == 0 || binaryNum.compareTo(zero) == 0){
             return String.valueOf(binaryNum);
         }
         // binaryNum 0.XX
