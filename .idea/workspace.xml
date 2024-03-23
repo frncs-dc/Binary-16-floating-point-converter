@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed mantissa output and added checkValidBase method">
+    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed valid base input checking">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Converter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Output.java" afterDir="false" />
     </list>
     <list id="89fd4119-0b50-4063-89c1-eab211a939ca" name="Changes by Gab PC" comment="Changes by Gab PC" />
     <list id="27cdb381-a567-42ee-b1c9-7d476ceaed74" name="Changes by mukbookpro" comment="" />
@@ -125,7 +125,7 @@
       <workItem from="1710376913111" duration="10957000" />
       <workItem from="1710648402601" duration="11649000" />
       <workItem from="1711122701480" duration="1824000" />
-      <workItem from="1711163874282" duration="6169000" />
+      <workItem from="1711163874282" duration="10271000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
@@ -239,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711174893652</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix: fixed valid base input checking">
+      <option name="closed" value="true" />
+      <created>1711175904543</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711175904543</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,6 +281,7 @@
     <MESSAGE value="fix: fixed input validation for negative binary input" />
     <MESSAGE value="feat: added design for gui" />
     <MESSAGE value="fix: fixed mantissa output and added checkValidBase method" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed mantissa output and added checkValidBase method" />
+    <MESSAGE value="fix: fixed valid base input checking" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed valid base input checking" />
   </component>
 </project>

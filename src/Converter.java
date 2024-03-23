@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class Converter extends JFrame {
     private JButton convertBtn;
@@ -34,18 +35,18 @@ public class Converter extends JFrame {
     public static String decimalToBinary(String input){ //  function to convert decimal to binary
 
         int wholeNumber;
-        float deciNumber;
+        BigDecimal deciNumber;
         String finalBinary = "";
 
         if (input.contains(".")) {  // if given string has a decimal value
             String[] floatingNumber = input.split("\\.");
             wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
-            String strDeciNumber = "0." + Integer.parseInt(floatingNumber[1]);
-            deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
+            String strDeciNumber = "0." + floatingNumber[1];
+            deciNumber = new BigDecimal(strDeciNumber); // decimal point value
         } else { // if  given does not have a decimal value
             String[] floatingNumber = input.split("\\.");
             wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
-            deciNumber = 0.0f;
+            deciNumber = BigDecimal.ZERO;
         }
 //        gets the exponent
 //        String[] exponent = inputs[1].split("\\^");
@@ -61,15 +62,15 @@ public class Converter extends JFrame {
 
         for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
             finalBinary = finalBinary + binaryNum[j];  //concat reversely the array that contains the modulo by 2
-                                                       // as we store the modulo from end to  start
+            // as we store the modulo from end to  start
         }
 
-        if(deciNumber > 0.0000){
+        if(deciNumber.compareTo(BigDecimal.valueOf(0.0000)) > 0){
             finalBinary += "."; // appending the decimal point
-            while(deciNumber > 0.0){
-                deciNumber *= 2;
-                if(deciNumber >= 1.0){
-                    deciNumber -= 1;  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
+            while(deciNumber.compareTo(BigDecimal.valueOf(0.0)) > 0){
+                deciNumber = deciNumber.multiply(BigDecimal.valueOf(2));
+                if(deciNumber.compareTo(BigDecimal.valueOf(1.0)) >= 0){
+                    deciNumber = deciNumber.subtract(BigDecimal.valueOf(1));  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
                     finalBinary += "1"; //  if true we now append 1
                 } else {
                     finalBinary += "0"; // if not more than 1 append 0

@@ -122,18 +122,23 @@ public class Output {
         BigDecimal mul1 = new BigDecimal("10");
         BigDecimal mul2 = new BigDecimal("0.1");
         BigDecimal two = new BigDecimal("2");
+        BigDecimal one = new BigDecimal("1");
         BigDecimal zero = new BigDecimal("0");
         int minusExponent = 0;
         int addExponent = 0;
-        if( (binaryNum.compareTo(two) < 0 && binaryNum.compareTo(zero) > 0) || binaryNum.compareTo(zero) == 0){
+
+        if( (binaryNum.compareTo(two) < 0 && binaryNum.compareTo(one) > 0) || binaryNum.compareTo(one) == 0){
+            System.out.println("1f: " + String.valueOf(binaryNum));
             return String.valueOf(binaryNum);
         }
         // binaryNum 0.XX
-        else if (binaryNum.compareTo(two) < 0){
-            while(binaryNum.compareTo(two) < 0){
+        else if (binaryNum.compareTo(one) < 0){
+            while(binaryNum.compareTo(one) < 0){
                 binaryNum = binaryNum.multiply(mul1);
                 minusExponent++;
             }
+            System.out.println("1f: " + String.valueOf(binaryNum));
+            System.out.println("Exponent: " + String.valueOf(minusExponent));
         }
         //binaryNum 1XX
         else if (binaryNum.compareTo(two) > 0){
@@ -141,6 +146,8 @@ public class Output {
                 binaryNum = binaryNum.multiply(mul2);
                 addExponent++;
             }
+            System.out.println("1f: " + String.valueOf(binaryNum));
+            System.out.println("Exponent: " + String.valueOf(minusExponent));
         }
 
         this.exponent = String.valueOf(Integer.parseInt(exponent) - minusExponent + addExponent);
