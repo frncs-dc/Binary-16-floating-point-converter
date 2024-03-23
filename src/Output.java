@@ -69,17 +69,39 @@ public class Output {
 
     public String expandDecimal(String input){
         String[] expandedNumber = input.split("[x^]");
-        int base = Integer.parseInt(expandedNumber[1]);
-        int exp = Integer.parseInt(expandedNumber[2]);
+        BigDecimal ZERO = new BigDecimal("0");
+//      int base = Integer.parseInt(expandedNumber[1]);
+//      System.out.println("BASE: " + base);
+//        int exp = Integer.parseInt(expandedNumber[2]);
+//        System.out.println("EXP: " + exp);
         this.exponent = "0";
 
-        BigDecimal baseBigDecimal = new BigDecimal(base);
+        BigDecimal baseBD = new BigDecimal(expandedNumber[1]);
+        BigDecimal expBD = new BigDecimal(expandedNumber[2]);
         BigDecimal power = BigDecimal.ONE;
-        for (int i = 0; i < exp; i++) {
-            power = power.multiply(baseBigDecimal);
+        int exp = Integer.parseInt(expandedNumber[2]);
+
+        if (expBD.compareTo(ZERO) > 0){
+            for (int i = 0; i < exp; i++){
+                power = power.multiply(baseBD);
+            }
+        } else if (expBD.compareTo(ZERO) < 0) {
+            for (int i = 0; i > exp; i--){
+                power = power.divide(baseBD);
+            }
         }
 
+
+//        System.out.println("BASEBGD: " + baseBigDecimal);
+//        BigDecimal power = BigDecimal.ONE;
+//        for (int i = 0; i < exp; i++) {
+//            power = power.multiply(baseBigDecimal);
+//        }
+        System.out.println("POWERER: " + power);
+
         BigDecimal number = new BigDecimal(expandedNumber[0]);
+
+        System.out.println("EXPAND: " + power.multiply(number));
 
         return String.valueOf(power.multiply(number));
     }
@@ -126,28 +148,25 @@ public class Output {
         BigDecimal zero = new BigDecimal("0");
         int minusExponent = 0;
         int addExponent = 0;
-
         if( (binaryNum.compareTo(two) < 0 && binaryNum.compareTo(one) > 0) || binaryNum.compareTo(one) == 0){
-            System.out.println("1f: " + String.valueOf(binaryNum));
             return String.valueOf(binaryNum);
         }
         // binaryNum 0.XX
         else if (binaryNum.compareTo(one) < 0){
             while(binaryNum.compareTo(one) < 0){
                 binaryNum = binaryNum.multiply(mul1);
+//                System.out.println("disis" + binaryNum);
                 minusExponent++;
+//                System.out.println("MINUS E: " + minusExponent);
             }
-            System.out.println("1f: " + String.valueOf(binaryNum));
-            System.out.println("Exponent: " + String.valueOf(minusExponent));
         }
         //binaryNum 1XX
         else if (binaryNum.compareTo(two) > 0){
             while(binaryNum.compareTo(two) > 0){
                 binaryNum = binaryNum.multiply(mul2);
                 addExponent++;
+//                System.out.println("ADD E: " + addExponent);
             }
-            System.out.println("1f: " + String.valueOf(binaryNum));
-            System.out.println("Exponent: " + String.valueOf(minusExponent));
         }
 
         this.exponent = String.valueOf(Integer.parseInt(exponent) - minusExponent + addExponent);

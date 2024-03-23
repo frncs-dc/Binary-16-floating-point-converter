@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed valid base input checking">
+    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed 1F formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Output.java" afterDir="false" />
@@ -125,7 +125,7 @@
       <workItem from="1710376913111" duration="10957000" />
       <workItem from="1710648402601" duration="11649000" />
       <workItem from="1711122701480" duration="1824000" />
-      <workItem from="1711163874282" duration="10271000" />
+      <workItem from="1711163874282" duration="12576000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
@@ -247,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711175904543</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix: fixed 1F formatting">
+      <option name="closed" value="true" />
+      <created>1711179899515</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711179899515</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +290,7 @@
     <MESSAGE value="feat: added design for gui" />
     <MESSAGE value="fix: fixed mantissa output and added checkValidBase method" />
     <MESSAGE value="fix: fixed valid base input checking" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed valid base input checking" />
+    <MESSAGE value="fix: fixed 1F formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed 1F formatting" />
   </component>
 </project>

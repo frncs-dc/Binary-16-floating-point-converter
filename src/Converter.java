@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Converter extends JFrame {
     private JButton convertBtn;
@@ -34,49 +35,93 @@ public class Converter extends JFrame {
      */
     public static String decimalToBinary(String input){ //  function to convert decimal to binary
 
-        int wholeNumber;
-        BigDecimal deciNumber;
+        BigDecimal ZERO = new BigDecimal("0");
+        BigDecimal TWO = new BigDecimal("2");
+        BigDecimal ONE = new BigDecimal("1");
+        BigDecimal wholeNum;
+        BigDecimal deciNum;
         String finalBinary = "";
 
-        if (input.contains(".")) {  // if given string has a decimal value
-            String[] floatingNumber = input.split("\\.");
-            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
-            String strDeciNumber = "0." + floatingNumber[1];
-            deciNumber = new BigDecimal(strDeciNumber); // decimal point value
-        } else { // if  given does not have a decimal value
-            String[] floatingNumber = input.split("\\.");
-            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
-            deciNumber = BigDecimal.ZERO;
+        if (input.contains(".")) {
+            String[] decimalNum = input.split("\\.");
+            wholeNum = new BigDecimal(decimalNum[0]);
+            deciNum =  new BigDecimal("0." + decimalNum[1]);
+            System.out.println("CONTAINS DECIMAL");
+        } else {
+            String[] decimalNum = input.split("\\.");
+            wholeNum = new BigDecimal(decimalNum[0]);
+            deciNum = new BigDecimal("0.0");
+            System.out.println("CONTAINS NO DECIMAL");
         }
+
+//        if (input.contains(".")) {  // if given string has a decimal value
+//            String[] floatingNumber = input.split("\\.");
+//            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
+//            String strDeciNumber = "0." + Integer.parseInt(floatingNumber[1]);
+//            deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
+//        } else { // if  given does not have a decimal value
+//            String[] floatingNumber = input.split("\\.");
+//            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
+//            deciNumber = 0.0f;
+//        }
 //        gets the exponent
 //        String[] exponent = inputs[1].split("\\^");
 //        int exp = Integer.parseInt(exponent[1]);
 
         int[] binaryNum = new int[1000];
         int i = 0;
-        while(wholeNumber > 0){
-            binaryNum[i] = wholeNumber % 2;  //remainder is stored
-            wholeNumber = wholeNumber / 2;   //divide for next iteration until n = 0
+//        System.out.println("THIS NUM: " + wholeNum);
+        while (wholeNum.compareTo(ZERO) > 0) {
+            binaryNum[i] = Integer.parseInt(String.valueOf(wholeNum.remainder(TWO)));
+//            System.out.println("CURRENT INPUT: " + binaryNum[i]);
+//            System.out.println("OLD NUM: " + wholeNum);
+            wholeNum = wholeNum.divide(TWO).setScale(0, RoundingMode.FLOOR);
+//            System.out.println("NEW NUM: " + wholeNum);
             i++;
         }
+
+//        while(wholeNumber > 0){
+//            binaryNum[i] = wholeNumber % 2;  //remainder is stored
+//            wholeNumber = wholeNumber / 2;   //divide for next iteration until n = 0
+//            i++;
+//        }
 
         for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
             finalBinary = finalBinary + binaryNum[j];  //concat reversely the array that contains the modulo by 2
             // as we store the modulo from end to  start
         }
+//        System.out.println("CURRENT WHOLE NUM: " + finalBinary);
 
-        if(deciNumber.compareTo(BigDecimal.valueOf(0.0000)) > 0){
-            finalBinary += "."; // appending the decimal point
-            while(deciNumber.compareTo(BigDecimal.valueOf(0.0)) > 0){
-                deciNumber = deciNumber.multiply(BigDecimal.valueOf(2));
-                if(deciNumber.compareTo(BigDecimal.valueOf(1.0)) >= 0){
-                    deciNumber = deciNumber.subtract(BigDecimal.valueOf(1));  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
-                    finalBinary += "1"; //  if true we now append 1
+        int MAX = 0;
+        if (deciNum.compareTo(ZERO) > 0) {
+            finalBinary += ".";
+//            System.out.println("WHOLE NUM WITH DEC: " + finalBinary);
+            while (deciNum.compareTo(ZERO) > 0 && MAX != 20) {
+//                System.out.println("DEC: " + deciNum);
+                deciNum = deciNum.multiply(TWO);
+//                System.out.println("DEC MUL: " + deciNum);
+                if (deciNum.compareTo(ONE) > 0 || deciNum.compareTo(ONE) == 0) {
+                    deciNum = deciNum.subtract(ONE);
+                    finalBinary += "1";
                 } else {
-                    finalBinary += "0"; // if not more than 1 append 0
+                    finalBinary += "0";
                 }
+                MAX++;
             }
         }
+
+//        if(deciNumber > 0.0000){
+//            finalBinary += "."; // appending the decimal point
+//            while(deciNumber > 0.0){
+//                deciNumber *= 2;
+//                if(deciNumber >= 1.0){
+//                    deciNumber -= 1;  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
+//                    finalBinary += "1"; //  if true we now append 1
+//                } else {
+//                    finalBinary += "0"; // if not more than 1 append 0
+//                }
+//            }
+//        }
 
         System.out.println("Binary:" + finalBinary);
         return finalBinary; // returns the converted decimal to binary as string
@@ -166,38 +211,10 @@ public class Converter extends JFrame {
                     binaryString[0].charAt(i) != '1' &&
                     binaryString[0].charAt(i) != '.' &&
                     binaryString[0].charAt(i) != '-'
-                ) {
+            ) {
                 throw new Exception();
             }
         }
-    }
-
-    private void checkValidBase(String input) throws Exception {
-        boolean containsX2 = input.contains("x2");
-        boolean containsX10 = input.contains("x10");
-
-        if (containsX2 && containsX10) {
-            throw new Exception("Input should contain either x2 or x10 but not both.");
-        } else if (!containsX2 && !containsX10) {
-            throw new Exception("Input should contain either x2 or x10.");
-        }
-
-        int countX2 = countOccurrences(input, "x2");
-        int countX10 = countOccurrences(input, "x10");
-
-        if (countX2 + countX10 != 1) {
-            throw new Exception("Input should contain exactly one occurrence of either x2 or x10.");
-        }
-    }
-
-    private int countOccurrences(String input, String pattern) {
-        int count = 0;
-        int index = input.indexOf(pattern);
-        while (index != -1) {
-            count++;
-            index = input.indexOf(pattern, index + 1);
-        }
-        return count;
     }
 
     public Converter() {
@@ -211,8 +228,6 @@ public class Converter extends JFrame {
                 String input = inputField.getText();
                 try {
                     errorMsg.setText("");
-                    System.out.println("Input: " + input);
-                    checkValidBase(input);
                     input = checkNegative(input, output);
 
                     if (!checkBinary(input)){ // check if Binary
@@ -267,6 +282,4 @@ public class Converter extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-
 }
