@@ -150,8 +150,12 @@ public class Output {
         }
 //        String mantissa = this.mantissa.substring(0, this.mantissa.length()-1);
 
-        while(tempMantissa.length() < 10){
-            tempMantissa += "0";
+        if (tempMantissa.length() < 10) {
+            while(tempMantissa.length() < 10){
+                tempMantissa += "0";
+            }
+        } else if (tempMantissa.length() > 10) {
+            tempMantissa = tempMantissa.substring(0, 10);
         }
         this.mantissa = tempMantissa;
     }

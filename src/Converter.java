@@ -171,6 +171,12 @@ public class Converter extends JFrame {
         }
     }
 
+    private void checkValidBase(String input) throws Exception {
+        if(!input.contains("x2") && !input.contains("x10")){
+            throw new Exception();
+        }
+    }
+
     public Converter() {
 
         convertBtn.addActionListener(new ActionListener() {
@@ -182,6 +188,8 @@ public class Converter extends JFrame {
                 String input = inputField.getText();
                 try {
                     errorMsg.setText("");
+                    System.out.println("Input: " + input);
+                    checkValidBase(input);
                     input = checkNegative(input, output);
 
                     if (!checkBinary(input)){ // check if Binary
@@ -236,4 +244,6 @@ public class Converter extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+
 }
