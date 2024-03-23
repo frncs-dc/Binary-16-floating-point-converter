@@ -55,20 +55,6 @@ public class Converter extends JFrame {
             System.out.println("CONTAINS NO DECIMAL");
         }
 
-//        if (input.contains(".")) {  // if given string has a decimal value
-//            String[] floatingNumber = input.split("\\.");
-//            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
-//            String strDeciNumber = "0." + Integer.parseInt(floatingNumber[1]);
-//            deciNumber = Float.parseFloat(strDeciNumber); // decimal point value
-//        } else { // if  given does not have a decimal value
-//            String[] floatingNumber = input.split("\\.");
-//            wholeNumber = Integer.parseInt(floatingNumber[0]); // whole number value
-//            deciNumber = 0.0f;
-//        }
-//        gets the exponent
-//        String[] exponent = inputs[1].split("\\^");
-//        int exp = Integer.parseInt(exponent[1]);
-
         int[] binaryNum = new int[1000];
         int i = 0;
 //        System.out.println("THIS NUM: " + wholeNum);
@@ -86,12 +72,6 @@ public class Converter extends JFrame {
             i++;
         }
 
-
-//        while(wholeNumber > 0){
-//            binaryNum[i] = wholeNumber % 2;  //remainder is stored
-//            wholeNumber = wholeNumber / 2;   //divide for next iteration until n = 0
-//            i++;
-//        }
 
         for(int j = i - 1; j >= 0; j--){// printing of binary in reverse order
             finalBinary = finalBinary + binaryNum[j];  //concat reversely the array that contains the modulo by 2
@@ -117,23 +97,13 @@ public class Converter extends JFrame {
             }
         }
 
-//        if(deciNumber > 0.0000){
-//            finalBinary += "."; // appending the decimal point
-//            while(deciNumber > 0.0){
-//                deciNumber *= 2;
-//                if(deciNumber >= 1.0){
-//                    deciNumber -= 1;  //if the product of multiplying by 2 is more than 1.(some number)  subtract 1
-//                    finalBinary += "1"; //  if true we now append 1
-//                } else {
-//                    finalBinary += "0"; // if not more than 1 append 0
-//                }
-//            }
-//        }
-
         System.out.println("Binary: " + finalBinary);
         return finalBinary; // returns the converted decimal to binary as string
     }
-
+    /**
+     @param value the number to be converted to hex
+     @return the hex letter
+     */
     static String getHexLetter(int value){
         switch (value){
             case 10:
@@ -153,6 +123,11 @@ public class Converter extends JFrame {
         }
     }
 
+    /**
+     *
+     * @param binaryInput to convert to hex
+     * @return the converted hex
+     */
     static String convertToHex(String binaryInput){
         String[] binGroups = new String[4];
         int[] hexValues = new int[]{8, 4, 2, 1};
@@ -177,6 +152,12 @@ public class Converter extends JFrame {
         return finalHex;
     }
 
+    /**
+     *
+     * @param input to check if negative
+     * @param output the object to update
+     * @return the string input
+     */
     static String checkNegative (String input, Output output) {
         if (input.startsWith("-")){
             output.sign = "1";
@@ -186,6 +167,11 @@ public class Converter extends JFrame {
             return input;
         }
     }
+
+    /**
+     *
+     * @param content to write on the text file
+     */
     private void writeOutputToTextFile(String content) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Save Output as Text File");
@@ -210,6 +196,11 @@ public class Converter extends JFrame {
         }
     }
 
+    /**
+     *
+     * @param input to check if its a valid binary input
+     * @throws Exception
+     */
     private void checkValidBinary(String input) throws Exception {
         String[] binaryString = input.split("x2");
         for (int i = 0; i < binaryString[0].length(); i++) {
@@ -224,6 +215,12 @@ public class Converter extends JFrame {
         }
     }
 
+    /**
+     *
+     * @param input the string to check
+     * @param output the object to update
+     * @return true if NaN value, false if not
+     */
     private boolean checkNan(String input, Output output) {
         if(input.equalsIgnoreCase("snan")){
             output.sign = "X";
@@ -260,7 +257,6 @@ public class Converter extends JFrame {
     }
 
     public Converter() {
-
         convertBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

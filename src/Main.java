@@ -12,11 +12,10 @@ public class Main {
                 }
             }
         } catch (Exception e) {
-            // If Nimbus is not available, you can handle the exception
             e.printStackTrace();
         }
 
-        // Create your Converter GUI
+        // Create Converter GUI
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 Converter converter = new Converter();

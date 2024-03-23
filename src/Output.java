@@ -11,6 +11,11 @@ public class Output {
     //util
     private final int bias = 15;
 
+    /**
+     *
+     * @param binaryInput string to check if its a special case
+     * @return true if special case, false if not
+     */
     public boolean isSpecialCase (String binaryInput){
         String[] exp = binaryInput.split("x2\\^");
         for (String a : exp){
@@ -46,6 +51,12 @@ public class Output {
         return false;
     }
 
+    /**
+     *
+     * @param binary string to denormalize
+     * @param shiftDecimal the exponent
+     * @return
+     */
     public String calculateDenormalizedMantissa(String binary, int shiftDecimal){
         System.out.println("My binary is" + binary + " and my exponent to shift is " + shiftDecimal);
         //shift decimal place to left for each shiftDecimal values
@@ -71,13 +82,16 @@ public class Output {
         return binaryString;
     }
 
+
+    /**
+     *
+     * @param input the string to expand
+     * @return the expanded string
+     */
     public String expandDecimal(String input){
         String[] expandedNumber = input.split("[x^]");
         BigDecimal ZERO = new BigDecimal("0");
-//      int base = Integer.parseInt(expandedNumber[1]);
-//      System.out.println("BASE: " + base);
-//        int exp = Integer.parseInt(expandedNumber[2]);
-//        System.out.println("EXP: " + exp);
+
         this.exponent = "0";
 
         BigDecimal baseBD = new BigDecimal(expandedNumber[1]);
@@ -95,12 +109,6 @@ public class Output {
             }
         }
 
-
-//        System.out.println("BASEBGD: " + baseBigDecimal);
-//        BigDecimal power = BigDecimal.ONE;
-//        for (int i = 0; i < exp; i++) {
-//            power = power.multiply(baseBigDecimal);
-//        }
         System.out.println("POWERER: " + power);
 
         BigDecimal number = new BigDecimal(expandedNumber[0]);
@@ -110,6 +118,11 @@ public class Output {
         return power.multiply(number).toPlainString();
     }
 
+    /**
+     *
+     * @param input the string to expand
+     * @return the expanded string
+     */
     public String expandBinary(String input){
         String[] expandedNumber = input.split("[x^]");
         double number = Double.parseDouble(expandedNumber[0]);
@@ -128,21 +141,13 @@ public class Output {
         }
         this.exponentBias = tempBias;
 
-//        String exponentBinary = "";
-//
-//        for (int count = 0; count < 5; count++){
-//            if(exponentDecimal % 2 == 1){
-//                exponentBinary = "1" + exponentBinary;
-//            }
-//            else{
-//                exponentBinary = "0" + exponentBinary;
-//            }
-//            exponentDecimal /= 2;
-//        }
-
-//        return exponentBinary;
     }
 
+    /**
+     *
+     * @param unconvertedNum the string to convert
+     * @return the converted string
+     */
     public String convertTo1f(String unconvertedNum){
         BigDecimal binaryNum = new BigDecimal(unconvertedNum);
         BigDecimal mul1 = new BigDecimal("10");
@@ -177,6 +182,10 @@ public class Output {
         return String.valueOf(binaryNum);
     }
 
+    /**
+     *
+     * @param convertedNum the string to get the mantissa
+     */
     public void completeMantissa(String convertedNum){
         String tempMantissa = "";
 
@@ -194,48 +203,5 @@ public class Output {
         }
         this.mantissa = tempMantissa;
     }
-//    public String getBinaryOutput(){
-//        String output = "";
-//        output += sign + " ";
-//        output += exponentBias + " ";
-//        output += completeMantissa();
-//
-//        return output;
-//    }
 
-
-//    public void extractValues(String binaryNum){
-//        //-1.101 x 2^something
-//
-//        String sign, mantissa, exponent;
-//        int firstInstanceofDecimalPoint = binaryNum.indexOf(".");
-//        int firstInstanceofExp = binaryNum.indexOf("^");
-//        int firstInstanceofx = binaryNum.indexOf("x");
-//
-//        if (binaryNum.contains(".")){
-//            //when there is a decimal point present
-//            this.sign = String.valueOf(isNegative(binaryNum) ? 1 : 0); //if what is returned is 1, then its negative else positive
-//
-//            this.mantissa = binaryNum.substring(firstInstanceofDecimalPoint+1, firstInstanceofx); //gets everything after the decimal point until x2^stuff
-//
-//            this.exponent = binaryNum.substring(firstInstanceofExp+1); //gets everything after the ^ sign
-//
-//            System.out.println("Sign: " +this.sign+" Exponent: "+this.exponent+" Mantissa: "+this.mantissa);
-//        } else {
-//            //-101 x 2^something
-//            //if there is no decimal point
-//            this.sign = String.valueOf(isNegative(binaryNum) ? 1 : 0); //if what is returned is 1, then its negative else positive
-//
-//            this.mantissa = binaryNum.substring(1, firstInstanceofx); //starts reading after sign/no sign then stops reading before 'x'
-//
-//            this.exponent = binaryNum.substring(firstInstanceofExp+1); //gets everything after the ^ sign
-//
-//            System.out.println("Sign: " + this.sign +" Exponent: "+this.exponent+" Mantissa: "+this.mantissa);
-//        }
-//
-//    }
-
-//    public boolean isNegative(String binaryNum){
-//        return binaryNum.startsWith("-");
-//    }
 }
