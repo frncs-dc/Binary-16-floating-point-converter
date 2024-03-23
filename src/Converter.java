@@ -172,9 +172,31 @@ public class Converter extends JFrame {
     }
 
     private void checkValidBase(String input) throws Exception {
-        if(!input.contains("x2") && !input.contains("x10")){
-            throw new Exception();
+        boolean containsX2 = input.contains("x2");
+        boolean containsX10 = input.contains("x10");
+
+        if (containsX2 && containsX10) {
+            throw new Exception("Input should contain either x2 or x10 but not both.");
+        } else if (!containsX2 && !containsX10) {
+            throw new Exception("Input should contain either x2 or x10.");
         }
+
+        int countX2 = countOccurrences(input, "x2");
+        int countX10 = countOccurrences(input, "x10");
+
+        if (countX2 + countX10 != 1) {
+            throw new Exception("Input should contain exactly one occurrence of either x2 or x10.");
+        }
+    }
+
+    private int countOccurrences(String input, String pattern) {
+        int count = 0;
+        int index = input.indexOf(pattern);
+        while (index != -1) {
+            count++;
+            index = input.indexOf(pattern, index + 1);
+        }
+        return count;
     }
 
     public Converter() {

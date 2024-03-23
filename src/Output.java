@@ -73,7 +73,12 @@ public class Output {
         int exp = Integer.parseInt(expandedNumber[2]);
         this.exponent = "0";
 
-        BigDecimal power = BigDecimal.valueOf(Math.pow(base, exp));
+        BigDecimal baseBigDecimal = new BigDecimal(base);
+        BigDecimal power = BigDecimal.ONE;
+        for (int i = 0; i < exp; i++) {
+            power = power.multiply(baseBigDecimal);
+        }
+
         BigDecimal number = new BigDecimal(expandedNumber[0]);
 
         return String.valueOf(power.multiply(number));
