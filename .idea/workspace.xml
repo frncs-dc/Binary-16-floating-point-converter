@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed binary input validation">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Binary_16_floating_point_converter_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed input validation for negative binary input">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Converter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
     </list>
     <list id="89fd4119-0b50-4063-89c1-eab211a939ca" name="Changes by Gab PC" comment="Changes by Gab PC" />
     <list id="27cdb381-a567-42ee-b1c9-7d476ceaed74" name="Changes by mukbookpro" comment="" />
@@ -42,12 +42,14 @@
   &quot;prStates&quot;: []
 }</component>
   <component name="GitLabMergeRequestsSettings">{}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/frncs-dc/Binary-16-floating-point-converter.git&quot;,
-    &quot;accountId&quot;: &quot;c958cc85-42aa-4ca9-83aa-3175fc5cee84&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="858b2537-247d-4792-be68-8ca89536123d" />
+        <option name="url" value="https://github.com/frncs-dc/Binary-16-floating-point-converter.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="KubernetesApiProvider">{}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -82,7 +84,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JAR Application.Binary-16 floating point converter.jar">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Binary-16 floating point converter" />
@@ -96,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.Binary-16 floating point converter.jar" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JAR Application.Binary-16 floating point converter.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -123,7 +125,7 @@
       <workItem from="1710376913111" duration="10957000" />
       <workItem from="1710648402601" duration="11649000" />
       <workItem from="1711122701480" duration="1824000" />
-      <workItem from="1711163874282" duration="1016000" />
+      <workItem from="1711163874282" duration="4424000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
@@ -213,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711123618194</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix: fixed input validation for negative binary input">
+      <option name="closed" value="true" />
+      <created>1711165939285</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711165939285</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +254,7 @@
     <MESSAGE value="fix: fixed conversion to hex" />
     <MESSAGE value="feat: added input validation" />
     <MESSAGE value="fix: fixed mantissa error to use BigDecimal" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed mantissa error to use BigDecimal" />
+    <MESSAGE value="fix: fixed input validation for negative binary input" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed input validation for negative binary input" />
   </component>
 </project>

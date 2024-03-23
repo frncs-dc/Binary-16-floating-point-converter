@@ -231,7 +231,7 @@ public class Converter extends JFrame {
 
         this.setContentPane(this.converterPanel);
         this.setTitle("Binary-16 floating point converter");
-        this.setSize(300,400);
+        this.setSize(500,400);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
