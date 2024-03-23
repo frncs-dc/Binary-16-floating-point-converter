@@ -217,6 +217,41 @@ public class Converter extends JFrame {
         }
     }
 
+    private boolean checkNan(String input, Output output) {
+        if(input.equalsIgnoreCase("snan")){
+            output.sign = "X";
+            output.exponentBias = "11111";
+            output.mantissa = "01XXXXXXXX";
+
+            signBitField.setText(output.sign);
+            expField.setText(output.exponentBias);
+            mantissaField.setText(output.mantissa);
+            String lowerHexRange = convertToHex("1"+output.exponentBias+"0111111111");
+            String upperHexRange = convertToHex("0"+output.exponentBias+"0111111111");
+            hexField.setText(lowerHexRange + " - " + upperHexRange);
+            outputInTextFileButton.setEnabled(true);
+
+            return true;
+
+        } else if (input.equalsIgnoreCase("qnan")){
+            output.sign = "X";
+            output.exponentBias = "11111";
+            output.mantissa = "1XXXXXXXXX";
+
+            signBitField.setText(output.sign);
+            expField.setText(output.exponentBias);
+            mantissaField.setText(output.mantissa);
+            String lowerHexRange = convertToHex("1"+output.exponentBias+"1111111111");
+            String upperHexRange = convertToHex("0"+output.exponentBias+"1111111111");
+            hexField.setText(lowerHexRange + " - " + upperHexRange);
+            outputInTextFileButton.setEnabled(true);
+
+            return true;
+        }
+
+        return false;
+    }
+
     public Converter() {
 
         convertBtn.addActionListener(new ActionListener() {
@@ -226,32 +261,37 @@ public class Converter extends JFrame {
                 String binaryNum;
                 String convertedNum;
                 String input = inputField.getText();
+
                 try {
                     errorMsg.setText("");
-                    input = checkNegative(input, output);
+                    if (!checkNan(input, output)){
+                        input = checkNegative(input, output);
 
-                    if (!checkBinary(input)){ // check if Binary
-                        binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
-                        convertedNum = output.convertTo1f(binaryNum);
-                        // check if special case
-                        if(!output.isSpecialCase(convertedNum)){
-                            output.computeBias();
-                            output.completeMantissa(convertedNum);
+                        if (!checkBinary(input)){ // check if Binary
+                            binaryNum = decimalToBinary(output.expandDecimal(input)); // if not convert
+                            convertedNum = output.convertTo1f(binaryNum);
+                            // check if special case
+                            if(!output.isSpecialCase(convertedNum)){
+                                output.computeBias();
+                                output.completeMantissa(convertedNum);
+                            }
+                        } else if (checkBinary(input)) {
+                            checkValidBinary(input);
+                            convertedNum = output.convertTo1f(output.expandBinary(input));
+                            // check if special case
+                            if(!output.isSpecialCase(convertedNum)){
+                                output.computeBias();
+                                output.completeMantissa(convertedNum);
+                            }
                         }
-                    } else if (checkBinary(input)) {
-                        checkValidBinary(input);
-                        convertedNum = output.convertTo1f(output.expandBinary(input));
-                        // check if special case
-                        if(!output.isSpecialCase(convertedNum)){
-                            output.computeBias();
-                            output.completeMantissa(convertedNum);
-                        }
+
+                        signBitField.setText(output.sign);
+                        expField.setText(output.exponentBias);
+                        mantissaField.setText(output.mantissa);
+                        hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
+                        outputInTextFileButton.setEnabled(true);
                     }
 
-                    signBitField.setText(output.sign);
-                    expField.setText(output.exponentBias);
-                    mantissaField.setText(output.mantissa);
-                    hexField.setText(convertToHex(output.sign+output.exponentBias+output.mantissa));
                 } catch (Exception error) {
                     System.out.println(error);
                     errorMsg.setText("ERROR: Invalid Input. Please try again.");
@@ -259,9 +299,11 @@ public class Converter extends JFrame {
                     expField.setText("");
                     mantissaField.setText("");
                     hexField.setText("");
+                    outputInTextFileButton.setEnabled(false);
                 }
-            }
 
+
+            }
         });
 
         outputInTextFileButton.addActionListener(new ActionListener() {
@@ -277,9 +319,11 @@ public class Converter extends JFrame {
 
         this.setContentPane(this.converterPanel);
         this.setTitle("Binary-16 floating point converter");
-        this.setSize(500,400);
+        this.setSize(700,400);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+
 }
