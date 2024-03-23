@@ -161,7 +161,11 @@ public class Converter extends JFrame {
         String[] binaryString = input.split("x2");
         for (int i = 0; i < binaryString[0].length(); i++) {
             // If the character is not '0' or '1', return false
-            if (binaryString[0].charAt(i) != '0' && binaryString[0].charAt(i) != '1' && binaryString[0].charAt(i) != '.') {
+            if (    binaryString[0].charAt(i) != '0' &&
+                    binaryString[0].charAt(i) != '1' &&
+                    binaryString[0].charAt(i) != '.' &&
+                    binaryString[0].charAt(i) != '-'
+                ) {
                 throw new Exception();
             }
         }

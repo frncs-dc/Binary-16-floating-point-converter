@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Binary-16 floating point converter:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Binary_16_floating_point_converter_jar</output-path>
+    <root id="archive" name="Binary-16 floating point converter.jar">
+      <element id="module-output" name="Binary-16 floating point converter" />
+    </root>
+  </artifact>
+</component>

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Binary-16 floating point converter:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed mantissa error to use BigDecimal">
+    <list default="true" id="e9821f97-fd51-4ba0-9142-1d548c595666" name="Changes" comment="fix: fixed binary input validation">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Binary_16_floating_point_converter_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converter.java" afterDir="false" />
     </list>
     <list id="89fd4119-0b50-4063-89c1-eab211a939ca" name="Changes by Gab PC" comment="Changes by Gab PC" />
     <list id="27cdb381-a567-42ee-b1c9-7d476ceaed74" name="Changes by mukbookpro" comment="" />
@@ -58,8 +64,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.Binary-16 floating point converter.jar.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/hanzpatrickyu/Documents/Java Projects/Binary-16-floating-point-converter&quot;,
@@ -68,10 +76,13 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.364539&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JAR Application.Binary-16 floating point converter.jar">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Binary-16 floating point converter" />
@@ -79,8 +90,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Binary-16 floating point converter.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Binary_16_floating_point_converter_jar/Binary-16 floating point converter.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Binary-16 floating point converter.jar" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -107,6 +123,7 @@
       <workItem from="1710376913111" duration="10957000" />
       <workItem from="1710648402601" duration="11649000" />
       <workItem from="1711122701480" duration="1824000" />
+      <workItem from="1711163874282" duration="1016000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added basic gui">
       <option name="closed" value="true" />
